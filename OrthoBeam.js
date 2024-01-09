@@ -4,7 +4,7 @@
 // Condition 2: The extension of the reference lines encompases the points where the new line intersects them
 function OrthoBeam (Name, Beam1, Beam2) {
 
-	a1 = (Beam1.end2.x - Beam1.end1.x);
+  a1 = (Beam1.end2.x - Beam1.end1.x);
   b1 = (Beam1.end2.y - Beam1.end1.y);
   c1 = (Beam1.end2.z - Beam1.end1.z);
   a2 = (Beam2.end1.x - Beam1.end1.x);
