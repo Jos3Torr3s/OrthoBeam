@@ -90,7 +90,7 @@ function OrthoBeam (Name, Beam1, Beam2, Axis, Position) {
 	  	    A.y < Math.min(Beam1.end1.y, Beam1.end2.y) ||
 	  	    B.y > Math.max(Beam2.end1.y, Beam2.end2.y) ||
 	  	    B.y < Math.min(Beam2.end1.y, Beam2.end2.y)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
-			print("(400) 'OrthoBeam' DIDN'T CREATE A BEAM: THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM");
+			print("(400) 'OrthoBeam' DIDN'T CREATE A BEAM: EITHER THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM OR THE LINES ARE SKEW");
 		} else {
 			newBeam = StraightBeam(A, B);
 			newBeam.name = Name;
