@@ -86,10 +86,10 @@ function OrthoBeam (Name, Beam1, Beam2, Axis, Position) {
 	  	    A.x < Math.min(Beam1.end1.x, Beam1.end2.x) ||
 	  	    B.x > Math.max(Beam2.end1.x, Beam2.end2.x) ||
 	  	    B.x < Math.min(Beam2.end1.x, Beam2.end2.x) ||
-	  	    A.y > Math.max(Beam1.end1.y, Beam1.end2.z) ||
-	  	    A.y < Math.min(Beam1.end1.y, Beam1.end2.z) ||
-	  	    B.y > Math.max(Beam2.end1.y, Beam2.end2.z) ||
-	  	    B.y < Math.min(Beam2.end1.y, Beam2.end2.z)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
+	  	    A.y > Math.max(Beam1.end1.y, Beam1.end2.y) ||
+	  	    A.y < Math.min(Beam1.end1.y, Beam1.end2.y) ||
+	  	    B.y > Math.max(Beam2.end1.y, Beam2.end2.y) ||
+	  	    B.y < Math.min(Beam2.end1.y, Beam2.end2.y)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
 			print("(400) 'OrthoBeam' DIDN'T CREATE A BEAM: THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM");
 		} else {
 			newBeam = StraightBeam(A, B);
