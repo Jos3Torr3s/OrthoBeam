@@ -9,8 +9,8 @@
 // Examples at the end
 function OrthoBeam (Name, Beam1, Beam2, Axis, Position, __check__) {
 // Arguments: 'Name of the new beam', Name of the first reference beam, Name of the second reference beam, ['Axis', Position]
-  //
-  //
+  	//
+    //
 	if (Name !== null && Beam1 !== null && Beam2 !== null && Axis === null) { // there are 3 arguments
 		a1 = (Beam1.end2.x - Beam1.end1.x);
   	b1 = (Beam1.end2.y - Beam1.end1.y);
@@ -47,19 +47,19 @@ function OrthoBeam (Name, Beam1, Beam2, Axis, Position, __check__) {
 	  	B = point((Beam2.end1.x + (t * V.x)).toDouble(), (Beam2.end1.y + (t * V.y)).toDouble(), (Beam2.end1.z + (t * V.z)).toDouble()); // Q + tV
 	  	//
 	  	if (A.x > Math.max(Beam1.end1.x, Beam1.end2.x) ||
-	 		 		A.x < Math.min(Beam1.end1.x, Beam1.end2.x) ||
-		  		B.x > Math.max(Beam2.end1.x, Beam2.end2.x) ||
-	  			B.x < Math.min(Beam2.end1.x, Beam2.end2.x) ||
-	  			A.y > Math.max(Beam1.end1.y, Beam1.end2.y) ||
-	  			A.y < Math.min(Beam1.end1.y, Beam1.end2.y) ||
-	  			B.y > Math.max(Beam2.end1.y, Beam2.end2.y) ||
-	  			B.y < Math.min(Beam2.end1.y, Beam2.end2.y)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
-				print("(120) OrthoBeam DIDN'T CREATE BEAM: THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM");
-			} else {
+	 		A.x < Math.min(Beam1.end1.x, Beam1.end2.x) ||
+		  	B.x > Math.max(Beam2.end1.x, Beam2.end2.x) ||
+	  		B.x < Math.min(Beam2.end1.x, Beam2.end2.x) ||
+	  		A.y > Math.max(Beam1.end1.y, Beam1.end2.y) ||
+	  		A.y < Math.min(Beam1.end1.y, Beam1.end2.y) ||
+	  		B.y > Math.max(Beam2.end1.y, Beam2.end2.y) ||
+	  		B.y < Math.min(Beam2.end1.y, Beam2.end2.y)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
+			print("(120) OrthoBeam DIDN'T CREATE BEAM: THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM");
+		} else {
 		  	newBeam = StraightBeam(A, B);
-				newBeam.name = Name;
-			}
+			newBeam.name = Name;
 		}
+	}
 	//
 	//
 	} else if (Name !== null && Beam1 !== null && Beam2 !== null && Axis !== null && Position !== null && __check__ === null) { // There are 5 arguments
@@ -89,16 +89,16 @@ function OrthoBeam (Name, Beam1, Beam2, Axis, Position, __check__) {
 			t = t_1.toDouble() / t_2.toDouble();
 			//
 			B = point(x_A + (x_B - x_A) * t, y_A + (y_B - y_A) * t, z_A + (z_B - z_A) * t);
-		  //
+		    //
 			if (B.x < Math.min(x_A, x_B) || B.x > Math.max(x_A, x_B) ||
 			    B.y < Math.min(y_A, y_B) || B.y > Math.max(y_A, y_B) ||
 			    B.z < Math.min(z_A, z_B) || B.z > Math.max(z_A, z_B)) { // Range check for reference lines
 				print("(220) OrthoBeam DIDN'T CREATE A BEAM: THE LINE WITH THE SHORTEST DISTANCE FROM THE SELECTED POINT IN Beam1 DOES NOT INTERSECT Beam2 IN ITS RANGE");
 			} else {
-		  	newBeam = StraightBeam(A, B);
+		  		newBeam = StraightBeam(A, B);
 				newBeam.name = Name;
 			}
-	  }
+		}
 	//
 	//
 	} else { // Wrong number of agruments
