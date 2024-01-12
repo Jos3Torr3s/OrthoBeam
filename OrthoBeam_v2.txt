@@ -9,19 +9,19 @@
 // Examples at the end
 function OrthoBeam (Name, Beam1, Beam2, Axis, Position, __check__) {
 // Arguments: 'Name of the new beam', Name of the first reference beam, Name of the second reference beam, ['Axis', Position]
-  	//
-    //
+	//
+	//
 	if (Name !== null && Beam1 !== null && Beam2 !== null && Axis === null) { // there are 3 arguments
 		a1 = (Beam1.end2.x - Beam1.end1.x);
-  	b1 = (Beam1.end2.y - Beam1.end1.y);
-  	c1 = (Beam1.end2.z - Beam1.end1.z);
-  	a2 = (Beam2.end1.x - Beam1.end1.x);
-  	b2 = (Beam2.end1.y - Beam1.end1.y);
-  	c2 = (Beam2.end1.z - Beam1.end1.z);
-  	a = (b1 * c2 - b2 * c1).toDouble();
-  	b = (a2 * c1 - a1 * c2).toDouble();
-  	c = (a1 * b2 - b1 * a2).toDouble();
-  	d = (-a * Beam1.end1.x.toDouble() - b * Beam1.end1.y.toDouble() - c * Beam1.end1.z.toDouble());
+  		b1 = (Beam1.end2.y - Beam1.end1.y);
+  		c1 = (Beam1.end2.z - Beam1.end1.z);
+  		a2 = (Beam2.end1.x - Beam1.end1.x);
+  		b2 = (Beam2.end1.y - Beam1.end1.y);
+  		c2 = (Beam2.end1.z - Beam1.end1.z);
+  		a = (b1 * c2 - b2 * c1).toDouble();
+  		b = (a2 * c1 - a1 * c2).toDouble();
+  		c = (a1 * b2 - b1 * a2).toDouble();
+  		d = (-a * Beam1.end1.x.toDouble() - b * Beam1.end1.y.toDouble() - c * Beam1.end1.z.toDouble());
 		// Now this condition uses a tolerance:
 		if (Math.abs(a * Beam2.end2.x.toDouble() + b * Beam2.end2.y.toDouble() + c * Beam2.end2.z.toDouble() + d) < 0.000001) { // The lines are co-planar
 			print("(110) OrthoBeam DIDN'T CREATE A BEAM: REFERENCE LINES ARE CO-PLANAR");
@@ -36,30 +36,30 @@ function OrthoBeam (Name, Beam1, Beam2, Axis, Position, __check__) {
 			m = (U.x * (Beam2.end1.x - Beam1.end1.x) + 
 			     U.y * (Beam2.end1.y - Beam1.end1.y) + 
 			     U.z * (Beam2.end1.z - Beam1.end1.z)).toDouble(); // U dot (Q - P)
-	  	n = (V.x * (Beam2.end1.x - Beam1.end1.x) + 
-	  	     V.y * (Beam2.end1.y - Beam1.end1.y) + 
-	  	     V.z * (Beam2.end1.z - Beam1.end1.z)).toDouble(); // V dot (Q - P)
-	  	//
-	  	s = ( j * n - k * m)/(math.pow(j, 2.0) - i * k);
-	  	t = (-j * m + i * n)/(math.pow(j, 2.0) - i * k);
-	  	//
-	  	A = point((Beam1.end1.x + (s * U.x)).toDouble(), (Beam1.end1.y + (s * U.y)).toDouble(), (Beam1.end1.z + (s * U.z)).toDouble()); // P + sU
-	  	B = point((Beam2.end1.x + (t * V.x)).toDouble(), (Beam2.end1.y + (t * V.y)).toDouble(), (Beam2.end1.z + (t * V.z)).toDouble()); // Q + tV
-	  	//
-	  	if (A.x > Math.max(Beam1.end1.x, Beam1.end2.x) ||
-	 		A.x < Math.min(Beam1.end1.x, Beam1.end2.x) ||
-		  	B.x > Math.max(Beam2.end1.x, Beam2.end2.x) ||
-	  		B.x < Math.min(Beam2.end1.x, Beam2.end2.x) ||
-	  		A.y > Math.max(Beam1.end1.y, Beam1.end2.y) ||
-	  		A.y < Math.min(Beam1.end1.y, Beam1.end2.y) ||
-	  		B.y > Math.max(Beam2.end1.y, Beam2.end2.y) ||
-	  		B.y < Math.min(Beam2.end1.y, Beam2.end2.y)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
-			print("(120) OrthoBeam DIDN'T CREATE BEAM: THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM");
-		} else {
-		  	newBeam = StraightBeam(A, B);
-			newBeam.name = Name;
+	  		n = (V.x * (Beam2.end1.x - Beam1.end1.x) + 
+	  	     	     V.y * (Beam2.end1.y - Beam1.end1.y) + 
+	  	             V.z * (Beam2.end1.z - Beam1.end1.z)).toDouble(); // V dot (Q - P)
+	  		//
+	  		s = ( j * n - k * m)/(math.pow(j, 2.0) - i * k);
+	  		t = (-j * m + i * n)/(math.pow(j, 2.0) - i * k);
+	  		//
+	  		A = point((Beam1.end1.x + (s * U.x)).toDouble(), (Beam1.end1.y + (s * U.y)).toDouble(), (Beam1.end1.z + (s * U.z)).toDouble()); // P + sU
+	  		B = point((Beam2.end1.x + (t * V.x)).toDouble(), (Beam2.end1.y + (t * V.y)).toDouble(), (Beam2.end1.z + (t * V.z)).toDouble()); // Q + tV
+	  		//
+	  		if (A.x > Math.max(Beam1.end1.x, Beam1.end2.x) ||
+	 		    A.x < Math.min(Beam1.end1.x, Beam1.end2.x) ||
+		  	    B.x > Math.max(Beam2.end1.x, Beam2.end2.x) ||
+	  		    B.x < Math.min(Beam2.end1.x, Beam2.end2.x) ||
+	  		    A.y > Math.max(Beam1.end1.y, Beam1.end2.y) ||
+	  		    A.y < Math.min(Beam1.end1.y, Beam1.end2.y) ||
+	  		    B.y > Math.max(Beam2.end1.y, Beam2.end2.y) ||
+	  		    B.y < Math.min(Beam2.end1.y, Beam2.end2.y)) { // Range check for reference lines (checking for 2 axes covers all non co-planar configurations)
+				print("(120) OrthoBeam DIDN'T CREATE BEAM: THE LINE PERPENDICULAR TO THE TWO REFERENCE LINES IS OUTSIDE THE RANGE OF AT LEAST ONE OF THEM");
+			} else {
+		  		newBeam = StraightBeam(A, B);
+				newBeam.name = Name;
+			}
 		}
-	}
 	//
 	//
 	} else if (Name !== null && Beam1 !== null && Beam2 !== null && Axis !== null && Position !== null && __check__ === null) { // There are 5 arguments
@@ -89,7 +89,7 @@ function OrthoBeam (Name, Beam1, Beam2, Axis, Position, __check__) {
 			t = t_1.toDouble() / t_2.toDouble();
 			//
 			B = point(x_A + (x_B - x_A) * t, y_A + (y_B - y_A) * t, z_A + (z_B - z_A) * t);
-		    //
+			//
 			if (B.x < Math.min(x_A, x_B) || B.x > Math.max(x_A, x_B) ||
 			    B.y < Math.min(y_A, y_B) || B.y > Math.max(y_A, y_B) ||
 			    B.z < Math.min(z_A, z_B) || B.z > Math.max(z_A, z_B)) { // Range check for reference lines
